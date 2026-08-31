@@ -1,0 +1,15 @@
+# outros
+.vscode
+
+# libs
+lib/*.so
+lib/*.o
+lib/*.a
+
+# build
+target/
+target/*
+
+# usado para manter pastas
+!.gitkeep
+
