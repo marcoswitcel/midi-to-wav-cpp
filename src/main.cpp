@@ -5,6 +5,8 @@
 
 
 #include "./command_line_utils.cpp"
+#include "./midi.hpp"
+#include "./wav.hpp"
 
 
 int main(int argc, const char* argv[])
