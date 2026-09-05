@@ -38,6 +38,16 @@ struct WAV_File_Header
 };
 #pragma pack(pop)
 
+/**
+ * @brief Representa o arquivo na integra
+ * 
+ */
+struct WAV_File
+{
+  WAV_File_Header header;
+  uint8_t *data;
+};
+
 void init_wav(WAV_File_Header &wav_file_header, uint32_t sample_rate, uint16_t num_channels)
 {
   wav_file_header.sample_rate = sample_rate;
