@@ -22,7 +22,7 @@ int main(int argc, const char* argv[])
 
   uint32_t sample_rate_in_hertz = 44100;
   float duration_in_Seconds = 2.0;
-  uint32_t data_size = duration_in_Seconds *  sample_rate_in_hertz;
+  uint32_t data_size = duration_in_Seconds *  sample_rate_in_hertz * 2;
   uint8_t* data_sample = new uint8_t[data_size];
 
   init_wav_file(wav_file, sample_rate_in_hertz, 1, data_sample, data_size);
