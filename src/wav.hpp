@@ -34,6 +34,7 @@ struct WAV_File_Header
 
   // Sessão com os dados
   char data_block_ID[4] = {'d', 'a', 't', 'a'};
+  // size em bytes
   uint32_t data_size;
 };
 #pragma pack(pop)
