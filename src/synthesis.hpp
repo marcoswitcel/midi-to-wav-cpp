@@ -6,6 +6,12 @@
 #include <algorithm>
 #include <limits>
 
+struct Playing_Note_Command
+{
+  float frequency;
+  float duration_in_seconds;
+};
+
 /**
  * @brief gera os samples (amostras) para a frequência provida
  * 
@@ -36,4 +42,36 @@ void generate_sine_wave(float frequency, float duration_in_seconds, uint32_t sam
     // converte a onda senoidal (-1.0 a 1.0) para o range de inteiro 16-bit assinado 
     data_sample[i] = static_cast<int16_t>(std::sin(angle) * max_amplitude);
   }
+}
+
+void sinthesize_notes(uint32_t sample_rate_in_hertz, size_t notes_length, Playing_Note_Command note_commands[])
+{
+  WAV_File wav_file;
+  // @todo João, nome configurável?
+  std::string filename = "note_command.wav";
+  float total_duration_in_seconds = 0;
+
+  // agrega total
+  for (size_t i = 0; i < notes_length; i++)
+  {
+    auto &note_command = note_commands[i];
+    total_duration_in_seconds += note_command.duration_in_seconds;
+  }
+
+  // calcula e aloca
+  uint32_t number_of_samples = total_duration_in_seconds * sample_rate_in_hertz;
+  uint32_t data_size_in_bytes = number_of_samples * 2; // 2 por ser 16-bits
+  int16_t* data_sample = new int16_t[number_of_samples];
+
+  // @todo João, volume configurável?
+  float amplitude = 0.5f;
+  for (size_t i = 0; i < notes_length; i++)
+  {
+    auto &note_command = note_commands[i];
+    generate_sine_wave(note_command.frequency, note_command.duration_in_seconds, sample_rate_in_hertz, amplitude, data_sample);
+  }
+
+  init_wav_file(wav_file, sample_rate_in_hertz, 1, reinterpret_cast<uint8_t*>(data_sample), data_size_in_bytes);
+
+  export_wav(filename, wav_file);
 }
