@@ -6,7 +6,15 @@
 #include <algorithm>
 #include <limits>
 
-
+/**
+ * @brief gera os samples (amostras) para a frequência provida
+ * 
+ * @param frequency número de ciclos de onda completos por segundo, medido em Hertz(Hz)
+ * @param duration_in_seconds duração em segundos
+ * @param sample_rate_in_hertz número de amostras (samples) de áudio coletados e armazenados por segundo
+ * @param amplitude Volume ou fator de escalonamento máximo da onda, limitado ao range 0.0f (silencio) e 1.0f (volume máximo). Recomendado: 0.5f
+ * @param data_sample ponteiro da memória alocada para os 
+ */
 void generate_sine_wave(float frequency, float duration_in_seconds, uint32_t sample_rate_in_hertz, float amplitude, int16_t* data_sample)
 {
   // @note no futuro dá pra fazer tempalte e passar o type
