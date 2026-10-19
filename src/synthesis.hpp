@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <limits>
 
+#include "./wav.hpp"
+
 struct Playing_Note_Command
 {
   float frequency;
@@ -65,10 +67,12 @@ void sinthesize_notes(uint32_t sample_rate_in_hertz, size_t notes_length, Playin
 
   // @todo João, volume configurável?
   float amplitude = 0.5f;
+  uint32_t number_of_samples_done = 0;
   for (size_t i = 0; i < notes_length; i++)
   {
     auto &note_command = note_commands[i];
-    generate_sine_wave(note_command.frequency, note_command.duration_in_seconds, sample_rate_in_hertz, amplitude, data_sample);
+    generate_sine_wave(note_command.frequency, note_command.duration_in_seconds, sample_rate_in_hertz, amplitude, &data_sample[number_of_samples_done]);
+    number_of_samples_done += note_command.duration_in_seconds * sample_rate_in_hertz;
   }
 
   init_wav_file(wav_file, sample_rate_in_hertz, 1, reinterpret_cast<uint8_t*>(data_sample), data_size_in_bytes);

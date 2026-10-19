@@ -35,5 +35,12 @@ int main(int argc, const char* argv[])
 
   export_wav(filename, wav_file);
 
+  Playing_Note_Command notes[3] = {
+    { .frequency = 440.0f, .duration_in_seconds = 1.0f, },
+    { .frequency = 330.0f, .duration_in_seconds = 1.0f, },
+    { .frequency = 550.0f, .duration_in_seconds = 1.0f, },
+  };
+  sinthesize_notes(sample_rate_in_hertz, 3, notes);
+
   return EXIT_SUCCESS;
 }
