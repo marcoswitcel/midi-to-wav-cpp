@@ -46,11 +46,9 @@ void generate_sine_wave(float frequency, float duration_in_seconds, uint32_t sam
   }
 }
 
-void sinthesize_notes(uint32_t sample_rate_in_hertz, size_t notes_length, Playing_Note_Command note_commands[])
+void sinthesize_notes(std::string filename, uint32_t sample_rate_in_hertz, size_t notes_length, Playing_Note_Command note_commands[])
 {
   WAV_File wav_file;
-  // @todo João, nome configurável?
-  std::string filename = "note_command.wav";
   float total_duration_in_seconds = 0;
 
   // agrega total

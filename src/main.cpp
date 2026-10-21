@@ -35,12 +35,15 @@ int main(int argc, const char* argv[])
 
   export_wav(filename, wav_file);
 
-  Playing_Note_Command notes[3] = {
+  Playing_Note_Command notes[4] = {
     { .frequency = 440.0f, .duration_in_seconds = 1.0f, },
     { .frequency = 330.0f, .duration_in_seconds = 1.0f, },
     { .frequency = 550.0f, .duration_in_seconds = 1.0f, },
+    { .frequency = 1100.0f, .duration_in_seconds = 1.0f, },
   };
-  sinthesize_notes(sample_rate_in_hertz, 3, notes);
+
+  std::string filename2 = "note_command.wav";
+  sinthesize_notes(filename2, sample_rate_in_hertz, 4, notes);
 
   return EXIT_SUCCESS;
 }
