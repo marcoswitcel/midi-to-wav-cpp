@@ -15,7 +15,8 @@ inline void patch_wav_file_header_size(WAV_File_Header &wav_file_header, uint32_
 
 inline void init_wav_file_header(WAV_File_Header &wav_file_header, uint32_t sample_rate, uint16_t num_channels, uint32_t data_size)
 {
-  wav_file_header.bits_per_sample = 16;
+  // @todo João, deve receber esse valor em algum momento
+  wav_file_header.bits_per_sample = BITS_PER_SAMPLE_16_BITS;
 
   wav_file_header.num_channels = num_channels;
   wav_file_header.sample_rate = sample_rate;
