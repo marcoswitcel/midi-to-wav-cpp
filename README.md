@@ -4,7 +4,7 @@
 
 ## Roadmap
 
-* exportar wav
+* exportar wav -- ok
 * ler wav
 * aplicar algum filtro no áudio lido e exportar
 * ler midi
