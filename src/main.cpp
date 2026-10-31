@@ -7,6 +7,7 @@
 #include "./midi.hpp"
 #include "./wav.cpp"
 #include "./synthesis.hpp"
+#include "./digital_signal_processing.hpp"
 
 
 int main(int argc, const char* argv[])
@@ -34,6 +35,10 @@ int main(int argc, const char* argv[])
   init_wav_file(wav_file, sample_rate_in_hertz, 1, reinterpret_cast<uint8_t*>(data_sample), data_size_in_bytes);
 
   export_wav(filename, wav_file);
+
+  // @todo João, incluir o parâmetro de threshold
+  increase_volume(6.0, data_sample, number_of_samples);
+  export_wav("teste2.wav", wav_file);
 
   Playing_Note_Command notes[4] = {
     { .frequency = 440.0f, .duration_in_seconds = 1.0f, },
