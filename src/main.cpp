@@ -36,7 +36,6 @@ int main(int argc, const char* argv[])
 
   export_wav(filename, wav_file);
 
-  // @todo João, ainda dando problema com 12 e threshold menor que 100000... não era pra ser assim...
   increase_volume(6, 1, data_sample, number_of_samples);
   export_wav("teste2.wav", wav_file);
 
